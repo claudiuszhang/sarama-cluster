@@ -237,7 +237,7 @@ func (c *Consumer) CommitOffsets() error {
 	for tp, state := range snap {
 		if state.Dirty {
 			dirty = true
-			req.AddBlock(tp.Topic, tp.Partition, state.Info.Offset, 0,ts, state.Info.Metadata)
+			req.AddBlock(tp.Topic, tp.Partition, state.Info.Offset, 0, ts, state.Info.Metadata)
 		}
 	}
 	if !dirty {
@@ -451,7 +451,7 @@ func (c *Consumer) twLoop(stopped <-chan none) {
 
 // commit loop, triggered by the mainLoop
 func (c *Consumer) cmLoop(stopped <-chan none) {
-	ticker := time.NewTicker(c.client.config.Consumer.Offsets.CommitInterval)
+	ticker := time.NewTicker(c.client.config.Consumer.Offsets.AutoCommit.Interval)
 	defer ticker.Stop()
 
 	for {
