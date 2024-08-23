@@ -1,4 +1,4 @@
-module github.com/dilllay/sarama-cluster
+module github.com/claudiuszhang/sarama-cluster
 
 go 1.22.2
 
